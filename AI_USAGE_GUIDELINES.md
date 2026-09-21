@@ -7,12 +7,16 @@ Code steward: 吳普軒 (see `DECISIONS.md`)
 | Tool | Used for | NOT used for |
 |------|----------|--------------|
 | Claude Code | Drafting code and tests, explaining unfamiliar code, refactoring suggestions, first-pass code review | Merging or pushing to `main`; architecture decisions; writing the evaluation results or interpreting user data; anything touching secrets or credentials |
+| Ollama (local deployment) | Generating source-linked drafts of discharge summaries from synthetic or properly de-identified, explicitly authorized inputs; flagging missing fields for physician review | Receiving identifiable patient data without authorization; diagnosis; prescribing or changing medication; deciding discharge readiness; writing directly to a production record; or signing a summary |
 
-Claude Code is the only AI tool the team uses. Adding another tool requires a `DECISIONS.md` entry first.
+Ollama is approved for the deployed discharge-summary prototype under the scope
+recorded in `DECISIONS.md`. Any additional AI tool or a material expansion of
+Ollama's scope requires a new `DECISIONS.md` entry first.
 
 General rules:
 - AI output is a draft. A human teammate reads, understands, and can explain every line before it is committed.
-- No secrets, credentials, or participant personal data are pasted into any AI tool.
+- No secrets, credentials, or identifiable patient data are pasted into Claude Code or any public AI service.
+- Ollama may receive only synthetic cases or properly de-identified, explicitly authorized records inside the approved local environment. Local use does not remove the need for access controls, authorization, or privacy review.
 - Every PR is approved by a human reviewer other than the author, regardless of who or what wrote the code.
 
 ## 2. How we will document AI interactions
